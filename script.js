@@ -6,36 +6,16 @@ const image2 = document.querySelector('#image2');
 const image3 = document.querySelector('#image3');
 const textBox = document.querySelector('#text-box');
 
-function darkMode() {
-    nav.style.backgroundColor = "rgb(0 0 0 / 50%)";
-    textBox.style.backgroundColor = "rgb(255 255 255 / 50%)";
-    toggleIcon.children[0].textContent = "Dark Mode";
-    toggleIcon.children[1].classList.remove("fa-sun");
-    toggleIcon.children[1].classList.add("fa-moon");
-    image1.src = "img/undraw_proud_coder_dark.svg";
-    image2.src = "img/undraw_feeling_proud_dark.svg";
-    image3.src = "img/undraw_conceptual_idea_dark.svg";
-}
-
-function lightMode() {
-    nav.style.backgroundColor = "rgb(255 255 255 / 50%)";
-    textBox.style.backgroundColor = "rgb(0 0 0 / 50%)";
-    toggleIcon.children[0].textContent = "Light Mode";
-    toggleIcon.children[1].classList.remove("fa-moon");
-    toggleIcon.children[1].classList.add("fa-sun");
-    image1.src = "img/undraw_proud_coder_light.svg";
-    image2.src = "img/undraw_feeling_proud_light.svg";
-    image3.src = "img/undraw_conceptual_idea_light.svg";
-}
-
 function switchTheme({ target: { checked } }) {
-    if (checked) {
-        darkMode();
-    } else {
-        lightMode();
-    }
-
     document.documentElement.setAttribute('data-theme', checked ? 'dark' : 'light');
+    nav.style.backgroundColor = checked ? "rgb(0 0 0 / 50%)" : "rgb(255 255 255 / 50%)";
+    textBox.style.backgroundColor = checked ? "rgb(255 255 255 / 50%)" : "rgb(0 0 0 / 50%)";
+    toggleIcon.children[0].textContent = checked ? "Dark Mode" : "Light Mode";
+    toggleIcon.children[1].classList.remove(checked ? "fa-sun" : "fa-moon");
+    toggleIcon.children[1].classList.add(checked ? "fa-moon" : "fa-sun");
+    image1.src = `img/undraw_proud_coder_${checked ? 'dark' : 'light'}.svg`;
+    image2.src = `img/undraw_feeling_proud_${checked ? 'dark' : 'light'}.svg`;
+    image3.src = `img/undraw_conceptual_idea_${checked ? 'dark' : 'light'}.svg`;
 }
 
 toggleSwitch?.addEventListener("change", switchTheme);
